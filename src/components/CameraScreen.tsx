@@ -8,12 +8,12 @@ interface CameraScreenProps {
   userName: string;
 }
 
-// 🔑 CREDENCIALES ROBOFLOW - ✅ MODELO CON 50 CRÉDITOS
-const ROBOFLOW_API_KEY = "WtnLTLJgl9YihwzWF0In";
-const ROBOFLOW_MODEL = "modular_efectivo_inclusivo-tbzzd/1";
+// 🔑 CREDENCIALES ROBOFLOW
+const ROBOFLOW_API_KEY = "XIR9R2SZP1mmwfIYYL4Q";
+const ROBOFLOW_MODEL = "proyecto_efectivo_inclusivo-zjz0l/1";
 const ROBOFLOW_URL = `https://serverless.roboflow.com/${ROBOFLOW_MODEL}`;
 
-// ⚙️ CONFIGURACIÓN DE DETECCIÓN - IGUAL AL CÓDIGO 2
+// ⚙️ CONFIGURACIÓN DE DETECCIÓN
 const DETECTION_CONFIG = {
   INTERVAL_MS: 1500, // Analizar cada 1.5 segundos
   MIN_CONFIDENCE: 0.90, // 🎯 SOLO considera detecciones con 90%+
@@ -105,7 +105,7 @@ export const CameraScreen: React.FC<CameraScreenProps> = ({ onLogout, userName }
     lastSpokenMessageRef.current = '';
   };
 
-  // 🔄 DETECCIÓN EN TIEMPO REAL CON ESTABILIZACIÓN - IGUAL AL CÓDIGO 2
+  // 🔄 DETECCIÓN EN TIEMPO REAL CON ESTABILIZACIÓN
   const analyzeFrame = async () => {
     if (!videoRef.current || !cameraActive || isAnalyzing) {
       return;
@@ -136,7 +136,6 @@ export const CameraScreen: React.FC<CameraScreenProps> = ({ onLogout, userName }
       // Calidad media para balance velocidad/precisión
       const base64Image = canvas.toDataURL('image/jpeg', 0.85).split(',')[1];
       
-      // 🔥 FORMATO CORRECTO - SERVERLESS API (IGUAL AL CÓDIGO 2)
       const response = await fetch(`${ROBOFLOW_URL}?api_key=${ROBOFLOW_API_KEY}`, {
         method: 'POST',
         headers: {
